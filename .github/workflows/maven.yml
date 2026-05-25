@@ -23,9 +23,8 @@ jobs:
     - name: Run tests with Maven
       run: mvn clean test
     
-    - name: Upload test results
+    - name: Upload JUnit test report
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-test-report@v1
       with:
-        name: surefire-reports
-        path: target/surefire-reports/
+        test-results: target/surefire-reports/*.xml
