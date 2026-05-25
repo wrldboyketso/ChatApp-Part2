@@ -21,7 +21,7 @@ jobs:
         cache: maven
     
     - name: Run tests with Maven
-      run: mvn clean test
+      run: mvn -B clean test
 
     - name: Upload surefire reports as artifact
       if: always()
@@ -29,10 +29,3 @@ jobs:
       with:
         name: surefire-reports
         path: target/surefire-reports/
-
-    - name: Publish JUnit test report
-      if: always()
-      continue-on-error: true
-      uses: actions/upload-test-report@v1
-      with:
-        test-results: target/surefire-reports/*.xml
